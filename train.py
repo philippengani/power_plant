@@ -8,7 +8,6 @@ from pyspark.ml import Pipeline
 from pyspark.ml.evaluation import RegressionEvaluator
 import matplotlib.pyplot as plt
 from pyspark.ml.feature import VectorAssembler
-#from pyspark.sql import SparkSession
 
 # load the dataset
 from pyspark.sql.types import *
@@ -21,6 +20,7 @@ customSchema = StructType([ \
     StructField("RH", DoubleType(), True), \
     StructField("PE", DoubleType(), True)])
 
+print("here")
 altPowerPlantDF = sqlContext.read.format('com.databricks.spark.csv').options(delimiter='\t', header='true').load(
     "/databricks-datasets/power-plant/data", schema=customSchema)
 #altPowerPlantDF.show()
