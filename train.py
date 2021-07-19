@@ -1,5 +1,7 @@
-import sys
 
+print("here")
+
+import sys
 import mlflow
 import mlflow.spark
 from pyspark.ml.regression import RandomForestRegressor
@@ -20,7 +22,7 @@ customSchema = StructType([ \
     StructField("RH", DoubleType(), True), \
     StructField("PE", DoubleType(), True)])
 
-print("here")
+
 altPowerPlantDF = sqlContext.read.format('com.databricks.spark.csv').options(delimiter='\t', header='true').load(
     "/databricks-datasets/power-plant/data", schema=customSchema)
 #altPowerPlantDF.show()
