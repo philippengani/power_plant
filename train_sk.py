@@ -75,10 +75,10 @@ def mlflow_run(params, run_name="Tracking Experiment: TensorFlow - CNN "):
 
 
 if __name__ == "__main__":
-    depth = float(sys.argv[1]) if len(sys.argv) > 1 else 3
-    trees = float(sys.argv[2]) if len(sys.argv) > 2 else 10
+    depth = int(sys.argv[1]) if len(sys.argv) > 1 else 3
+    trees = int(sys.argv[2]) if len(sys.argv) > 2 else 10
 
-    params = {'maxDepth': int(depth), 'numTrees': int(trees)}
+    params = {'maxDepth': depth, 'numTrees': trees}
 
     (exp_id, run_id) = mlflow_run(params)
 
