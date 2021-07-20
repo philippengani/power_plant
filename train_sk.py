@@ -29,6 +29,8 @@ test_x = testDF.drop(["PE"], axis=1)
 train_y = trainDF[["PE"]]
 test_y = testDF[["PE"]]
 
+mlflow.sklearn.autolog()
+
 
 def mlflow_run(params, run_name="Tracking Experiment: TensorFlow - CNN "):
     with mlflow.start_run(run_name=" Power output prediction") as run:
