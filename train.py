@@ -81,7 +81,7 @@ def mlflow_run(params, run_name="Tracking Experiment: TensorFlow - CNN "):
     # Use the model
 
 
-if __name__ == "__main__":
+'''if __name__ == "__main__":
     depth = float(sys.argv[1]) if len(sys.argv) > 1 else 3
     trees = float(sys.argv[2]) if len(sys.argv) > 2 else 10
 
@@ -89,4 +89,4 @@ if __name__ == "__main__":
 
     (exp_id, run_id) = mlflow_run(params)
 
-    print(f"Finished Experiment id={exp_id} and run id = {run_id}")
+    print(f"Finished Experiment id={exp_id} and run id = {run_id}")'''

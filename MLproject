@@ -7,4 +7,4 @@ entry_points:
     parameters:
       maxDepths: {type: int, default: 3}
       numTrees: {type: int, default: 10}
-    command: "python train.py {maxDepths} {numTrees}"
+    command: "python train_sk.py {maxDepths} {numTrees}"
