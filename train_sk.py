@@ -16,7 +16,7 @@ def eval_metrics(actual, pred):
     return rmse, mae, r2
 
 
-altPowerPlantDF = pd.read_csv("ccppp.csv")
+altPowerPlantDF = pd.read_csv("ccpp.csv")
 
 # Split the data into training and test sets. (0.75, 0.25) split.
 trainDF, testDF = train_test_split(altPowerPlantDF)
