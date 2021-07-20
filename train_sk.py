@@ -36,8 +36,8 @@ def mlflow_run(params, run_name="Tracking Experiment: TensorFlow - CNN "):
     with mlflow.start_run(run_name=" Power output prediction") as run:
         # Define the ML pipeline
 
-        max_depth = params['maxDepth']
-        n_estimators = params['numTrees']
+        max_depth = params['max_depth']
+        n_estimators = params['n_estimators']
         rf = RandomForestRegressor(max_depth=max_depth, n_estimators=n_estimators, random_state=0)
         rf.fit(train_x, train_y)
 
@@ -52,7 +52,7 @@ def mlflow_run(params, run_name="Tracking Experiment: TensorFlow - CNN "):
 
         (rmse, mae, r2) = eval_metrics(test_y, predicted_qualities)
 
-        print("RandomForest model (mex depth=%f, numTrees=%f):" % (max_depth, n_estimators))
+        print("RandomForest model (mex_depth=%f, n_estimators=%f):" % (max_depth, n_estimators))
         print("  RMSE: %s" % rmse)
         print("  MAE: %s" % mae)
         print("  R2: %s" % r2)
@@ -82,7 +82,7 @@ if __name__ == "__main__":
     depth = int(sys.argv[1]) if len(sys.argv) > 1 else 3
     trees = int(sys.argv[2]) if len(sys.argv) > 2 else 10
 
-    params = {'maxDepth': depth, 'numTrees': trees}
+    params = {'max_depth': depth, 'n_estimators': trees}
 
     (exp_id, run_id) = mlflow_run(params)
 
