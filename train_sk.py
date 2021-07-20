@@ -78,7 +78,7 @@ if __name__ == "__main__":
     depth = float(sys.argv[1]) if len(sys.argv) > 1 else 3
     trees = float(sys.argv[2]) if len(sys.argv) > 2 else 10
 
-    params = {'maxDepth': depth, 'numTrees': trees}
+    params = {'maxDepth': int(depth), 'numTrees': int(trees)}
 
     (exp_id, run_id) = mlflow_run(params)
 
