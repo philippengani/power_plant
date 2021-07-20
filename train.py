@@ -23,8 +23,15 @@ customSchema = StructType([ \
     StructField("PE", DoubleType(), True)])
 
 
-altPowerPlantDF = sqlContext.read.format('com.databricks.spark.csv').options(delimiter='\t', header='true').load(
-    "/databricks-datasets/power-plant/data", schema=customSchema)
+'''altPowerPlantDF = sqlContext.read.format('com.databricks.spark.csv').options(delimiter='\t', header='true').load(
+    "/databricks-datasets/power-plant/data", schema=customSchema)'''
+
+altPowerPlantDF = spark.read.csv(
+    "ccpp.csv",
+    header=True,
+    schema=customSchema
+)
+
 #altPowerPlantDF.show()
 (trainDF, testDF) = altPowerPlantDF.randomSplit([.8, .2], seed=42)
 
