@@ -1,0 +1,23 @@
+set APP_NAME=mlflow-xgb-demo
+set MODEL_PATH= /Users/NganiPhilippeAlain/github/power_plant/mlruns/0/3ad20e272be845b8a613ef30c1b2dd43/artifacts/model
+set LOCAL_PORT=8888
+set REGION=ca-central-1
+set ROLE=arn:aws:iam::725210324233:role/service-role/AmazonSageMaker-ExecutionRole-20210721T152048
+
+mlflow ui
+
+wget -N https://archive.ics.uci.edu/ml/machine-learning-databases/00222/bank-additional.zip
+
+unzip -o bank-additional.zip
+
+mlflow sagemaker run-local -m $MODEL_PATH -p $LOCAL_PORT
+
+mlflow sagemaker build-and-push-container
+
+aws ecr describe-images --repository-name mlflow-pyfunc --region $REGION
+
+mlflow sagemaker deploy -a $APP_NAME -m $MODEL_PATH -e $ROLE --region-name $REGION
+
+aws sagemaker list-endpoints --region $REGION
+
+mlflow sagemaker delete -a $APP_NAME -r $REGION
