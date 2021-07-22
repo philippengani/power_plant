@@ -10,9 +10,26 @@ from pyspark.ml import Pipeline
 from pyspark.ml.evaluation import RegressionEvaluator
 import matplotlib.pyplot as plt
 from pyspark.ml.feature import VectorAssembler
+from pyspark import SparkConf, SparkContext, sql
 
 # load the dataset
 from pyspark.sql.types import *
+
+
+conf = SparkConf().set("spark.ui.port", "4050")
+sc = SparkContext(conf=conf)
+
+from pyspark.sql import SparkSession
+
+#specifiy the directory to the jar files used for the connection to mongo db
+working_directory = '/usr/local/lib/python3.7/dist-packages/pyspark/jars/*'
+
+spark = SparkSession \
+    .builder \
+    .appName("power_plant") \
+    .getOrCreate()
+
+
 
 # Custom Schema for Power Plant
 customSchema = StructType([ \
@@ -81,7 +98,7 @@ def mlflow_run(params, run_name="Tracking Experiment: TensorFlow - CNN "):
     # Use the model
 
 
-'''if __name__ == "__main__":
+if __name__ == "__main__":
     depth = float(sys.argv[1]) if len(sys.argv) > 1 else 3
     trees = float(sys.argv[2]) if len(sys.argv) > 2 else 10
 
@@ -89,4 +106,4 @@ def mlflow_run(params, run_name="Tracking Experiment: TensorFlow - CNN "):
 
     (exp_id, run_id) = mlflow_run(params)
 
-    print(f"Finished Experiment id={exp_id} and run id = {run_id}")'''
+    print(f"Finished Experiment id={exp_id} and run id = {run_id}")
